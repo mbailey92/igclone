@@ -7,3 +7,12 @@
     background-color: #3878EA;
   }
   }
+
+.custom-nav-link {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+}
