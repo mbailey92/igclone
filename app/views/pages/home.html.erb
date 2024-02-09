@@ -7,7 +7,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to("", data: { bs_toggle: "modal", bs_target: "#exampleModal" }, class: "nav-link custom-nav-link", style: "font-size: 18px;") do %>
+        <%= link_to("", data: { bs_toggle: "modal", bs_target: "#new-post-modal" }, class: "nav-link custom-nav-link", style: "font-size: 18px;") do %>
           <i class="far fa-square-plus" style="margin-right: 10px;"></i> Create
       <% end %>
 </li>
@@ -28,24 +28,24 @@
 </div>
 
 <%# CREATE POST MODAL %>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="new-post-modal" tabindex="-1" aria-labelledby="new-post-modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header justify-content-center">
-        <p class="modal-title fs-6 fw-semibold" id="exampleModalLabel">Create new post</p>
+        <p class="modal-title fs-6 fw-semibold" id="new-post-modal-label">Create new post</p>
 
       </div>
       <div class="modal-body d-flex justify-content-center align-items-center">
         <div class="py-5" style="margin-left: auto; margin-right: auto; text-align: center;">
           <i class="fa-solid fa-photo-film" style="font-size: 80px; margin-bottom: 20px; opacity: 0.3;"></i>
           <p class="fs-5">Drag in photos and videos here</p>
-          <%= link_to "Select from computer", "", class:"btn btn-primary insta-primary" %>
+
+          <%= form_with model: Post.new, data: { controller: 'new-post-form' } do |f| %>
+            <%= link_to "Select from computer", "", data: { action: "click->new-post-form#selectFile" }, id: "post-selector", class:"btn btn-primary insta-primary" %>
+            <%= f.file_field :photo, data: { "new-post-form-target": "photoFile", action: "change->new-post-form#submitForm" }, class: "d-none" %>
+            <% end %>
         </div>
       </div>
-      <%# <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> %>
     </div>
   </div>
 </div>
