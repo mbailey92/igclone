@@ -13,6 +13,6 @@ static targets = ['selectFileButton', 'photoFile'];
   }
 
   submitForm() {
-    this.element.sunbmit();
+    this.element.submit();
   }
 }
